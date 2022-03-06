@@ -23,9 +23,9 @@ namespace HotelApp.API.Controllers
 
         // GET: api/Customer
         [HttpGet(Name = "GetCustomers")]
-        public IEnumerable<Customer> Get()
+        public ActionResult<IEnumerable<Customer>> Get()
         {
-            return customerRepository.GetAllCustomers();
+            return Ok(customerRepository.GetAllCustomers());
         }
 
         // GET: api/Customer/1
