@@ -22,9 +22,10 @@ namespace HotelApp.API.Controllers
 
         // GET: api/Hotel
         [HttpGet(Name ="GetHotels")]
-        public IEnumerable<Hotel> Get()
+        public ActionResult<IEnumerable<Hotel>> Get()
         {
-            return hotelRepository.GetAllHotels();
+            var hotels =  hotelRepository.GetAllHotels();
+            return Ok(hotels);
         }
 
         // GET: api/Hotel/1
