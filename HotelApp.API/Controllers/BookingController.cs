@@ -20,6 +20,14 @@ namespace HotelApp.API.Controllers
             this.bookingService = bookingService;
         }
 
+        // GET: api/Booking
+        [HttpGet(Name = "GetBookings")]
+        public ActionResult<IEnumerable<Bookings>> Get()
+        {
+            var bookings = bookingService.GetAllBookings();
+            return Ok(bookings);
+        }
+
         // POST: api/Booking
         [HttpPost]
         public ActionResult Post([FromBody] Register register)
@@ -34,6 +42,5 @@ namespace HotelApp.API.Controllers
                 return BadRequest();
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HotelApp.API.Model;
 using HotelApp.API.Repositories;
@@ -8,6 +9,7 @@ namespace HotelApp.API.Services
     public interface IBookingService
     {
         public void Book(int HotelId, int RoomId, int CustomerId, DateTime BookingFrom, DateTime BookingTo);
+        public List<Bookings> GetAllBookings();
     }
 
     public class BookingService :IBookingService
@@ -29,6 +31,11 @@ namespace HotelApp.API.Services
             Room room = hotel.Rooms.Where(x => x.Id == RoomId).FirstOrDefault();
             Customer customer = customerRepository.GetCustomer(CustomerId);
             bookingRepository.AddBooking(hotel, room, customer, BookingFrom, BookingTo);
+        }
+
+        public List<Bookings> GetAllBookings()
+        {
+            return bookingRepository.GetAllBookings();
         }
     }
 }
